@@ -208,3 +208,43 @@ Observaciones: ${observaciones || "Sin observaciones"}
   window.open(url, "_blank");
 });
 
+(function () {
+
+  const faqButtons = document.querySelectorAll('.faq-question');
+
+  if (!faqButtons.length) {
+    console.warn('FAQ: No se encontraron preguntas');
+    return;
+  }
+
+  faqButtons.forEach(button => {
+
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const item = this.parentElement;
+      const answer = item.querySelector('.faq-answer');
+
+      if (!answer) return;
+
+      const isVisible = answer.style.display === 'block';
+
+      // Cerrar todos
+      document.querySelectorAll('.faq-answer').forEach(a => {
+        a.style.display = 'none';
+      });
+
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+      });
+
+      // Abrir actual
+      if (!isVisible) {
+        answer.style.display = 'block';
+        item.classList.add('active');
+      }
+    });
+
+  });
+
+})();
