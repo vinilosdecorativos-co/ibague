@@ -498,79 +498,6 @@ z-index:2;
     transition: opacity 0.8s ease-in-out;
   }
 
-/* ===============================
-   BLOG GRID AUTO-RESPONSIVE
-================================ */
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 0 24px 64px;
-  align-items: stretch;
-}
-
-/* ===============================
-   BLOG CARD
-================================ */
-
-.blog-card {
-  background: #fff;
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.blog-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-}
-
-/* ===============================
-   IMAGENES CONSISTENTES
-================================ */
-
-.blog-card img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  display: block;
-  background: #f3f3f3;
-}
-
-/* ===============================
-   CONTENIDO
-================================ */
-
-.blog-card .content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-grow: 1;
-}
-
-.blog-card h3 {
-  font-size: 18px;
-  line-height: 1.25;
-}
-
-.blog-card p {
-  font-size: 14px;
-  opacity: .85;
-  flex-grow: 1;
-}
-
-/* ===============================
-   BOTON
-================================ */
-
-.blog-card .btn {
-  align-self: fle
-
 /* Bloques imagen + texto */
 .content-block {
   display: grid;
@@ -783,3 +710,197 @@ textarea {
   border: 0;
 }
 
+/* ===============================
+   BLOG GRID AUTO-RESPONSIVE
+================================ */
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 24px 64px;
+  align-items: stretch;
+}
+
+/* ===============================
+   BLOG CARD
+================================ */
+
+.blog-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   IMAGENES CONSISTENTES
+================================ */
+
+.blog-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  background: #f3f3f3;
+}
+
+/* ===============================
+   CONTENIDO
+================================ */
+
+.blog-card .content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.blog-card h3 {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.blog-card p {
+  font-size: 14px;
+  opacity: .85;
+  flex-grow: 1;
+}
+
+/* ===============================
+   BOTON
+================================ */
+
+.blog-card .btn {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+/* ===============================
+   MOBILE AJUSTES
+================================ */
+
+@media (max-width: 480px) {
+  .blog-grid {
+    padding: 0 16px 48px;
+    gap: 18px;
+  }
+}
+
+/* ============================
+   CATALOGO GALERIA INTERACTIVA
+============================ */
+
+.catalog-grid {
+  padding: 40px 0 70px;
+}
+
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  padding: 0 24px;
+}
+
+/* CARD */
+.catalog-card {
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 16px;
+  padding-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 38px rgba(0,0,0,0.12);
+}
+
+/* IMAGEN */
+.image-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity .4s ease;
+}
+
+/* TEXTO */
+.catalog-card h3 {
+  margin: 14px 16px 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.image-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+/* Mostrar la primera imagen por defecto */
+.image-wrapper img:first-child {
+  opacity: 1;
+}
+
+/* Hover: mostrar la segunda imagen */
+.catalog-card:hover .image-wrapper img:nth-child(2) {
+  opacity: 1;
+}
+
+/* Hover prolongado: tercera imagen */
+.catalog-card:hover .image-wrapper img:nth-child(3) {
+  opacity: 1;
+  transition-delay: .3s;
+}
+
+/* Mobile fallback */
+@media (hover: none) {
+  .catalog-card:hover .image-wrapper img {
+    opacity: 0;
+  }
+  .image-wrapper img:first-child {
+    opacity: 1;
+  }
+}
+
+.view-more {
+  display: block;
+  margin-left: 16px;
+  font-size: 13px;
+  opacity: .75;
+}
+
+/* MOBILE */
+@media (hover: none) {
+  .catalog-card:hover {
+    transform: none;
+  }
+}
