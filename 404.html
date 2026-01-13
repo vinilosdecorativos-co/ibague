@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página en remodelación | Vinilos Decorativos Ibagué</title>
+
+<style>
+/* =========================
+   RESET & BASE
+========================= */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:#f7f7f7;
+  color:#111;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+a{text-decoration:none}
+
+/* =========================
+   CONTAINER
+========================= */
+.error-container{
+  background:#fff;
+  border-radius:22px;
+  padding:48px 40px;
+  max-width:560px;
+  width:92%;
+  text-align:center;
+  box-shadow:0 30px 70px rgba(0,0,0,.15);
+  animation:fadeUp .7s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* =========================
+   ICON / NUMBER
+========================= */
+.error-code{
+  font-size:clamp(72px,10vw,110px);
+  font-weight:900;
+  letter-spacing:-4px;
+  opacity:.12;
+}
+
+.icon{
+  width:80px;
+  height:80px;
+  margin:-40px auto 14px;
+  border-radius:50%;
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:36px;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+}
+
+/* =========================
+   TEXT
+========================= */
+h1{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.55;
+  color:#555;
+  margin-bottom:26px;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:12px 22px;
+  border-radius:24px;
+  font-weight:600;
+  font-size:14px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.btn-primary{
+  background:#111;
+  color:#fff;
+}
+
+.btn-outline{
+  border:1px solid #111;
+  color:#111;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+}
+
+/* =========================
+   FOOTER NOTE
+========================= */
+.note{
+  margin-top:22px;
+  font-size:12px;
+  color:#777;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:480px){
+  .error-container{
+    padding:38px 26px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="error-container">
+
+  <div class="error-code">404</div>
+
+  <div class="icon">🛠️</div>
+
+  <h1>Estamos remodelando esta página</h1>
+
+  <p>
+    Parece que esta sección está en proceso de actualización.
+    Estamos trabajando para ofrecerte una mejor experiencia visual
+    y funcional muy pronto.
+  </p>
+
+  <div class="actions">
+    <a href="/" class="btn btn-primary">Volver al inicio</a>
+    <a href="/contacto.html" class="btn btn-outline">Cotizar mi vinilo</a>
+  </div>
+
+  <div class="note">
+    Vinilos Decorativos Ibagué · Diseño, instalación y garantía
+  </div>
+
+</div>
+
+</body>
+</html>
