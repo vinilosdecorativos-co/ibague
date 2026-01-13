@@ -208,3 +208,15 @@ Observaciones: ${observaciones || "Sin observaciones"}
   window.open(url, "_blank");
 });
 
+
+window.addEventListener('scroll',()=>{
+  const img=document.querySelector('.hero-image img');
+  img.style.transform=`translateY(${window.scrollY*.08}px)`;
+});
+
+/* FAQ TOGGLE */
+document.querySelectorAll('.faq-item').forEach(f=>{
+  f.addEventListener('click',()=>{
+    f.classList.toggle('active');
+  });
+});
