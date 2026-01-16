@@ -200,6 +200,9 @@ button.btn{background:var(--accent);color:white;padding:10px 14px;border-radius:
     position: relative;
     border-radius: 12px;
     overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
 }
 
 .nosotros-gallery img {
@@ -1103,4 +1106,36 @@ h2{
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .hero-image{order:-1}
+}
+
+ul {
+  list-style: none; /* Oculta los marcadores por defecto */
+  padding-left: 0; /* Elimina el padding inicial */
+}
+
+/* Estilo para cada elemento de la lista */
+li {
+  padding-left: 25px; /* Espacio para el icono */
+  position: relative; /* Para posicionar el icono */
+  margin-bottom: 5px;
+}
+
+/* Crea el icono con ::before */
+li::before {
+  content: ''; /* Necesario para que funcione el background */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  width: 16px; /* Tamaño del icono */
+  height: 16px;
+  background-image: url('ruta/a/tu/icono.png'); /* Cambia por tu imagen */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.blog-title h1 {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: unset;
 }
