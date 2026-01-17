@@ -220,3 +220,149 @@ document.querySelectorAll('.faq-item').forEach(f=>{
     f.classList.toggle('active');
   });
 });
+
+/* =====================================================
+   GALERÍA INTERACTIVA – SISTEMA PROFESIONAL
+===================================================== */
+
+const STORAGE_KEY = 'vdi_reactions';
+const USER_KEY = 'vdi_user_id';
+
+/* ---------- Usuario anónimo ---------- */
+function getUserId() {
+  let id = localStorage.getItem(USER_KEY);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(USER_KEY, id);
+  }
+  return id;
+}
+const USER_ID = getUserId();
+
+/* ---------- Datos ---------- */
+function getData() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+}
+
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  localStorage.setItem(STORAGE_KEY + '_sync', Date.now());
+}
+
+/* ---------- Inicializar ---------- */
+function initGallery() {
+  const data = getData();
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    const id = item.dataset.id;
+    if (!data[id]) {
+      data[id] = { likes: 0, loves: 0, users: {} };
+    }
+
+    updateUI(item, data[id]);
+  });
+
+  saveData(data);
+}
+
+/* ---------- UI ---------- */
+function updateUI(item, state) {
+  item.querySelector('.likes-count').textContent = `👍 ${state.likes}`;
+  item.querySelector('.loves-count').textContent = `❤️ ${state.loves}`;
+}
+
+/* ---------- Delegación de eventos ---------- */
+document.addEventListener('click', e => {
+
+  /* Abrir menú */
+  if (e.target.classList.contains('actions-btn')) {
+    e.stopPropagation();
+
+    document.querySelectorAll('.actions-menu').forEach(m => m.style.display = 'none');
+    const menu = e.target.nextElementSibling;
+    menu.style.display = 'flex';
+    return;
+  }
+
+  /* Click en acciones */
+  const actionBtn = e.target.closest('.actions-menu button');
+  if (actionBtn) {
+    e.stopPropagation();
+
+    const item = actionBtn.closest('.gallery-item');
+    const id = item.dataset.id;
+    const action = actionBtn.dataset.action;
+
+    const data = getData();
+    const state = data[id];
+    const user = state.users[USER_ID] || {};
+
+    /* Evitar múltiples likes */
+    if (action === 'like' || action === 'love') {
+      if (user[action]) {
+        alert('Ya registraste esta reacción 👍');
+        return;
+      }
+
+      state[action + 's']++;
+      state.users[USER_ID] = { ...user, [action]: true };
+
+      saveData(data);
+      updateUI(item, state);
+
+      if (action === 'love') animateHeart(item);
+    }
+
+    /* WhatsApp */
+    if (action === 'wa') {
+      const text = `Hola, me interesa este proyecto: ${item.dataset.title} ${item.dataset.img}`;
+      window.open(`https://wa.me/573010263000?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    item.querySelector('.actions-menu').style.display = 'none';
+    return;
+  }
+
+  /* Cerrar menús */
+  document.querySelectorAll('.actions-menu').forEach(m => m.style.display = 'none');
+});
+
+/* ---------- Animación corazón ---------- */
+function animateHeart(item) {
+  const heart = document.createElement('div');
+  heart.textContent = '❤️';
+  heart.className = 'heart-float';
+  item.appendChild(heart);
+
+  heart.addEventListener('animationend', () => heart.remove());
+}
+
+/* ---------- Sincronización entre páginas ---------- */
+window.addEventListener('storage', e => {
+  if (e.key === STORAGE_KEY || e.key === STORAGE_KEY + '_sync') {
+    initGallery();
+  }
+});
+
+/* ---------- Ranking ---------- */
+function getRanking() {
+  const data = getData();
+  return Object.entries(data)
+    .map(([id, d]) => ({ id, score: d.likes + d.loves * 2 }))
+    .sort((a, b) => b.score - a.score);
+}
+
+/* ---------- Exportar datos ---------- */
+function exportData() {
+  const blob = new Blob(
+    [JSON.stringify(getData(), null, 2)],
+    { type: 'application/json' }
+  );
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'vdi-reactions.json';
+  a.click();
+}
+
+/* ---------- Init ---------- */
+initGallery();
