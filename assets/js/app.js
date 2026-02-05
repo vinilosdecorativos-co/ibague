@@ -113,16 +113,6 @@ card.style.display = filter==='all' || card.dataset.category===filter ? 'block':
 })
 });
 
-
-// ===============================
-// TRACKING DE INTERACCIONES (CTA)
-// ===============================
-document.querySelectorAll('.btn').forEach(btn=>{
-btn.addEventListener('click',()=>{
-console.log('CTA Blog clickeado:', btn.textContent);
-})
-});
-
 // ===================================
 // BLOG – AJUSTES RESPONSIVE JS
 // ===================================

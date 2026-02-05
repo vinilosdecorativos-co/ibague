@@ -1134,22 +1134,34 @@ li::before {
   background-repeat: no-repeat;
 }
 
-/* ===== MASONRY PINTEREST ===== */
+/* ===== MASONRY PINTEREST REAL ===== */
 
 .catalogo {
   padding: 24px;
 }
 
 .masonry {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  column-count: 4;
+  column-gap: 16px;
 }
 
 .masonry img {
   width: 100%;
-  height: auto;
+  margin-bottom: 16px;
+  break-inside: avoid;
   border-radius: 14px;
   display: block;
 }
 
+/* Responsive */
+@media (max-width: 1200px) {
+  .masonry { column-count: 3; }
+}
+
+@media (max-width: 768px) {
+  .masonry { column-count: 2; }
+}
+
+@media (max-width: 480px) {
+  .masonry { column-count: 1; }
+}
