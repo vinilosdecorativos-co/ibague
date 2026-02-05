@@ -1100,13 +1100,7 @@ h2{
   margin-top:8px;
 }
 
-/* ================================
-   MOBILE
-================================ */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-image{order:-1}
-}
+
 
 ul {
   list-style: none; /* Oculta los marcadores por defecto */
