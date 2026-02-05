@@ -1153,15 +1153,41 @@ li::before {
   display: block;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .masonry { column-count: 3; }
+/* Tablets */
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
 }
 
+/* CELULAR → 2 COLUMNAS */
 @media (max-width: 768px) {
-  .masonry { column-count: 2; }
+  .masonry {
+    column-count: 2;
+    column-gap: 12px;
+  }
+
+  .masonry img {
+    margin-bottom: 12px;
+    border-radius: 12px;
+  }
 }
 
-@media (max-width: 480px) {
-  .masonry { column-count: 1; }
+/* Celulares muy pequeños */
+@media (max-width: 360px) {
+  .masonry {
+    column-count: 1;
+  }
+}
+
+
+.btn-volver {
+  background: var(--accent);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 999;
 }
